@@ -23,22 +23,20 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	ProfileService profileService;
-	
 	
 	@GetMapping("/{id}")
 	public UserDTO getUser(@PathVariable int id) {
 		// Get user's data from ID
 		return userService.getUser(id);
 	}
-	
+
 	@PostMapping("")
-	public UserDTO addUser(@ModelAttribute UserDTO userDTO, 
-	                    @ModelAttribute ProfileDTO profileDTO) {
-		// Add new user data
-		userDTO.setProfile(profileService.setProfile(profileDTO));
-		return userService.setUser(userDTO);
+	public UserDTO addUser(@ModelAttribute UserDTO userDTO, @ModelAttribute ProfileDTO profileDTO) {
+		// Add new user data with profile
+		userDTO.setProfile(profileService.setProfile(profileDTO)); // Save user profile
+		return userService.setUser(userDTO); // Save user
 	}
 }
