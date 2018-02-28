@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mindfire.dietplanner.api.service.ProfileService;
 import com.mindfire.dietplanner.api.service.UserService;
 import com.mindfire.dietplanner.core.dto.ProfileDTO;
 import com.mindfire.dietplanner.core.dto.UserDTO;
@@ -23,9 +22,6 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-
-	@Autowired
-	ProfileService profileService;
 	
 	@GetMapping("/{id}")
 	public UserDTO getUser(@PathVariable int id) {
@@ -35,8 +31,7 @@ public class UserController {
 
 	@PostMapping("")
 	public UserDTO addUser(@ModelAttribute UserDTO userDTO, @ModelAttribute ProfileDTO profileDTO) {
-		// Add new user data with profile
-		userDTO.setProfile(profileService.setProfile(profileDTO)); // Save user profile
-		return userService.setUser(userDTO); // Save user
+		// Save user and profile
+		return userService.setUser(userDTO, profileDTO);
 	}
 }
