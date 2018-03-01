@@ -163,3 +163,7 @@ function addSelectedFoodItem(selectedIndex) {
     // Got food item details now add it to local database
     addFoodItem(response);
 }
+
+function addFoodItemPreference(foodId, course) {
+
+}
