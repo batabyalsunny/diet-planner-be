@@ -11,7 +11,7 @@ import com.mindfire.dietplanner.api.service.DietPreferenceService;
 import com.mindfire.dietplanner.core.dto.UserDietDTO;
 
 @RestController
-@RequestMapping("/api/diet")
+@RequestMapping("/api/diet/pref")
 @CrossOrigin
 public class DietPreferenceController {
 	
