@@ -19,5 +19,12 @@ public class DietPreferenceService {
 	public UserDietDTO getUserDiet(int id) {
 		return dietPreferenceComponent.getUserDiet(id);
 	}
+
+	public UserDietDTO addItemToUserDiet(int id, int foodCourse, int foodId) {
+		return dietPreferenceComponent.addItemToUserDiet(id, foodCourse, foodId);
+	}
 	
+	public UserDietDTO removeItemFromUserDiet(int id, int foodCourse, int foodId) {
+		return dietPreferenceComponent.removeItemFromUserDiet(id, foodCourse, foodId);
+	}
 }	

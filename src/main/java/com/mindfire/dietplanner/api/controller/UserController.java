@@ -1,6 +1,9 @@
 package com.mindfire.dietplanner.api.controller;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +21,7 @@ import com.mindfire.dietplanner.core.dto.UserDTO;
  */
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin
 public class UserController {
 
 	@Autowired
@@ -29,9 +33,21 @@ public class UserController {
 		return userService.getUser(id);
 	}
 
-	@PostMapping("")
-	public UserDTO addUser(@ModelAttribute UserDTO userDTO, @ModelAttribute ProfileDTO profileDTO) {
-		// Save user and profile
+	@PostMapping("/signup")
+	public UserDTO addUser(@ModelAttribute UserDTO userDTO) {
+		// Dummy birth date
+		Date date = Date.valueOf("2000-01-01"); 
+		// Dummy user data
+		ProfileDTO profileDTO = new ProfileDTO(date, 'M', (short)0, (short)0, (short)0, (short)0); 
+		
+		// Save user and dummy profile which is updated later
 		return userService.setUser(userDTO, profileDTO);
 	}
+	
+	@PostMapping("/profile/{id}")
+	public UserDTO addUser(@PathVariable int id, @ModelAttribute ProfileDTO profileDTO) {
+		// Save user and profile
+		return userService.updateProfile(id, profileDTO);
+	}
+
 }

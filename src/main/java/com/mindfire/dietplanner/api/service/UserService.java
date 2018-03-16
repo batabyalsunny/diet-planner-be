@@ -16,7 +16,7 @@ public class UserService {
 
 	@Autowired
 	UserComponent userComponent;
-	
+
 	@Autowired
 	ProfileComponent profileComponent;
 
@@ -44,8 +44,9 @@ public class UserService {
 	}
 
 	/**
-	 * Saves user's complete data i.e name, role and data.
-	 * @param profileDTO 
+	 * Saves user's account i.e name, password and role.
+	 * 
+	 * @param profileDTO
 	 * 
 	 * @param user
 	 *            User instance
@@ -59,9 +60,30 @@ public class UserService {
 		// Now save user data
 		userDTO = userComponent.setUser(userDTO); // Get saved user DTO
 
-		userDTO.setEmail(hidden); // Hide the actual email
-		userDTO.setPassword(hidden); // Hide the actual password
 		return userDTO;
+	}
+
+	/**
+	 * Updates user profile with height, weight, birth date, activity and diet.
+	 * 
+	 * @param userId
+	 *            User ID
+	 * @param profileDTO
+	 *            DTO of the updated profile
+	 * @return
+	 */
+	public UserDTO updateProfile(int userId, ProfileDTO profileDTO) {
+
+		UserDTO newUserDTO = userComponent.getUser(userId); // Get saved user data
+		ProfileDTO newProfileDTO = profileComponent.setProfile(profileDTO); // Save new updated profile
+
+		newUserDTO.setProfile(newProfileDTO); // Update user profile to new profile
+		newUserDTO = userComponent.setUser(newUserDTO); // Save updated user
+
+		newUserDTO.setEmail(hidden); // Hide the actual email
+		newUserDTO.setPassword(hidden); // Hide the actual password
+
+		return newUserDTO;
 	}
 
 }

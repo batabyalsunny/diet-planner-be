@@ -1,18 +1,26 @@
+SIGNUP / ADD USER -
+POST - http://localhost:8081/api/users/signup?name=subho&email=email&password=pass&role=ROLE_USER&enabled=true
 
-1.1. ADD NEW USER -
-POST - http://localhost:8081/api/users/?
-name=subho&email=email&password=pass&role=ROLE_USER&enabled=true&dob=1993-03-18&gender=M&height=170&weight=54&activity=2&diet=5
+UPDATE USER PROFILE -
+POST - http://localhost:8081/api/users/profile/29?dob=1993-03-18&gender=M&height=176&weight=54&activity=2&diet=5
 
-1.2. USER LOGIN -
+USER LOGIN -
 GET - http://localhost:8081/api/login?email=email1&password=pass
+
+GET USER DATA -
+GET - http://localhost:8081/api/users/29
+
+GET DIET PREFERENCES FOR USER -
+GET - http://localhost:8081/api/diet/pref/1
+
+ADD FOOD ITEM AND COURSE TO DIET PREF -
+POST - http://localhost:8081/api/diet/pref/1?foodCourse=1&foodId=2
+
 
 2.1 ADD NEW FOOD -
 POST - http://localhost:8081/api/foods?name=roti&quantity=5.3&unit=gm&weight=150&thumbUrl=url&imageUrl=url&calories=12&fat=2.3&satFat=6.5&cholestrol=7.8&sodium=5&carbohydrates=4&protein=3&potassium=3
 
 2.2 SEARCH FOOD -
 POST - http://localhost:8081/api/foods?name=roti
-
-3. GET DIET PREFERENCES FOR USER -
-GET - http://localhost:8081/api/diet/pref/1
 
 
