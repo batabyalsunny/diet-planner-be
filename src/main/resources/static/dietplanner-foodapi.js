@@ -5,13 +5,16 @@
  * If response is null call Nutritionix API food search and store the response.
  * @param {string} foodName Name of the food item to search
  */
-function searchFoodItem(foodName) {
+const foodItemsUrl = 'http://localhost:8081/api/foods';
+const idealFoodItemsUrl = 'http://localhost:8081/api/foods/ideal';
+
+function searchFoodItem(foodName, handler) {
     foodName = foodName.toUpperCase();
     console.log('INFO: Searching for food item: ' + foodName);
 
     // Search in local database
     $.ajax({
-        url: 'http://localhost:8081/api/foods',
+        url: foodItemsUrl,
         type: "GET",
         dataType: "json",
         data: {
@@ -38,7 +41,7 @@ function addFoodItem(foodItem) {
 
     // POST call to save food item
     $.ajax({
-        url: 'http://localhost:8081/api/foods',
+        url: foodItemsUrl,
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Access-Control-Allow-Origin': '*'
@@ -78,12 +81,18 @@ function addFoodItem(foodItem) {
  * @param {object} response Response object
  */
 function finalizeFoodSearch(status, response) {
-    if (status == 'error')
+    // Error occured
+    if (status == 'error') {
         console.log('ERROR: Unable to find searched food item!');
-    else
+    }
+    // Food search successful
+    else {
         console.log('SUCCESS: Finalized food search!');
-
-    console.log('RESULT: ' + JSON.stringify(response));
+        // console.log('RESULT: ' + JSON.stringify(response));
+        
+        // Added food item to database, now add it to ideal diet plan
+        addFoodItemToIdealFoodItems(foodCourseId, response.id);
+    }
 }
 
 /**
@@ -113,14 +122,15 @@ function nutritionixApiFoodSearch(foodName) {
         var data = JSON.parse(JSON.stringify(payload)); // Parse response
         // Select first element from response i.e list of common foods
         var foodItems = data[0];
-        var suggestions = ''; // List of suggestions
         var length = foodItems.foods.length; // Length of foods list
 
         foodItemsList = foodItems; // Update foods list i.e global
 
         // Loop foods list and generate suggestions
-        for(var i=0; i<length; i++) {
-            suggestions += i + ': ' +  foodItems.foods[i].food_name + ' - ' + foodItems.foods[i].photo.thumb + '<br>';
+        suggestions = '';
+        for (var i = 0; i < length; i++) {
+            suggestions += 'ID: ' + i + ' -     ' + foodItems.foods[i].food_name.toUpperCase() +
+                '     <a href=' + foodItems.foods[i].photo.thumb + '>THUMB</a><br>';
         }
 
         // Show suggestions in HTML
@@ -137,9 +147,13 @@ function nutritionixApiFoodSearch(foodName) {
  * Returns food item object from Nutritionix selected by user.
  * @param {object} foodItem Food item to be saved
  */
-function addSelectedFoodItem(selectedIndex) {
+var foodCourseId;
+function addSelectedFoodItem(selectedIndex, foodCourse) {
     // Get selected food item from list
     var foodItem = foodItemsList.foods[selectedIndex];
+
+    // Update the food course ID
+    foodCourseId = foodCourse;
 
     // Extract required data from the response
     var response = {
@@ -164,6 +178,26 @@ function addSelectedFoodItem(selectedIndex) {
     addFoodItem(response);
 }
 
-function addFoodItemPreference(foodId, course) {
-
+function addFoodItemToIdealFoodItems(foodCourseId, foodItemId) {
+    // Add food item to ideal food items list
+    $.ajax({
+        url: idealFoodItemsUrl,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Access-Control-Allow-Origin': '*'
+        },
+        type: "POST",
+        dataType: "json",
+        data: {
+            // Pass request params
+            course: foodCourseId,
+            foodItemId: foodItemId
+        },
+        success: function (result) {
+            console.log("INFO: Food item added to ideal foods list!");
+        },
+        error: function (result) {
+            console.log("ERROR: Failed to saved food item to ideal foods list!");
+        }
+    });
 }
