@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mindfire.dietplanner.api.service.DietPlannerService;
-import com.mindfire.dietplanner.api.util.MailComponent;
 import com.mindfire.dietplanner.core.dto.UserDietDTO;
 
 /**
@@ -23,9 +22,6 @@ public class DietPlannerController {
 	@Autowired
 	DietPlannerService dietPlannerService;
 	
-	@Autowired
-	MailComponent mailComponent;
-	
 	/**
 	 * Maps GET request to diet planner service with user ID, to get suggested diet
 	 * plan for the user. Diet plan is generated from the user's diet preferences
@@ -37,8 +33,14 @@ public class DietPlannerController {
 	 * @throws Exception 
 	 */
 	@GetMapping("/{id}")
-	public UserDietDTO getNewDietPlan(@PathVariable int id) throws Exception {
+	public UserDietDTO getNewDietPlan(@PathVariable int id) {
 		return dietPlannerService.getNewDietPlan(id);
+	}
+	
+	
+	@GetMapping("/mail/{id}")
+	public UserDietDTO getCurrentDietPlan(@PathVariable int id) {
+		return dietPlannerService.getCurrentDietPlan(id);
 	}
 
 }

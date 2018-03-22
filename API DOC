@@ -33,6 +33,9 @@ GET - http://localhost:8081/api/foods/ideal
 GENERATE NEW DIET PLAN - 
 GET - http://localhost:8081/api/diet/plan/1
 
+MAIL CURRENT DIET PLAN -
+http://localhost:8081/api/diet/plan/mail/1
+
 
 1. FOOD ITEMS MANAGEMENT --------
 
