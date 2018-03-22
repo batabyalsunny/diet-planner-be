@@ -15,7 +15,7 @@ import com.mindfire.dietplanner.core.dto.FoodItemDTO;
 import com.mindfire.dietplanner.core.dto.NutrientDTO;
 
 /**
- * FoodItemController acts as an API end-point for FoodItem data. Class
+ * FoodItemController acts as an API end-point for food item data. Class
  * implements mapping end-points to service calls.
  */
 @RestController
@@ -26,18 +26,43 @@ public class FoodItemController {
 	@Autowired
 	FoodItemService foodItemService;
 
+	/**
+	 * Maps GET request for food item service with food item ID, which is used to
+	 * fetch a food item by a specific ID.
+	 * 
+	 * @param id
+	 *            Food item ID
+	 * @return Food item DTO
+	 */
 	@GetMapping("/{id}")
 	public FoodItemDTO getFoodItem(@PathVariable int id) {
 		// Get food item using ID
 		return foodItemService.getFoodItem(id);
 	}
-	
+
+	/**
+	 * Maps GET request for food item service with a food item name, which is used
+	 * to fetch a food item by name.
+	 * 
+	 * @param name
+	 *            Food item name
+	 * @return Food item DTO
+	 */
 	@GetMapping("")
 	public FoodItemDTO getFoodItemByName(@RequestParam String name) {
 		// Search database with food name
 		return foodItemService.getFoodItemByName(name);
 	}
 
+	/**
+	 * Maps POST request for food item service with model food item and model
+	 * nutrients data. New food item is created with these model data. New nutrients
+	 * data is also created for the food item with the nutrients model data.
+	 * 
+	 * @param foodItemDTO Food item model
+	 * @param nutrientDTO Nutrients model
+	 * @return Food item DTO
+	 */
 	@PostMapping("")
 	public FoodItemDTO setFoodItem(@ModelAttribute FoodItemDTO foodItemDTO, @ModelAttribute NutrientDTO nutrientDTO) {
 		// Save food item and nutrients
