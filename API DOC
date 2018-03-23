@@ -34,7 +34,13 @@ GENERATE NEW DIET PLAN -
 GET - http://localhost:8081/api/diet/plan/1
 
 MAIL CURRENT DIET PLAN -
-http://localhost:8081/api/diet/plan/mail/1
+GET - http://localhost:8081/api/diet/plan/mail/1
+
+GET CURRENT DIET PLAN RECORD -
+GET - http://localhost:8081/api/diet/plan/record/1
+
+GET CURRENT CALORIE TRACK -
+GET - http://localhost:8081/api/diet/plan/track/1
 
 
 1. FOOD ITEMS MANAGEMENT --------

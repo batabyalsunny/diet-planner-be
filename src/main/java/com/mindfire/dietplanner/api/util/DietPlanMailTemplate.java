@@ -43,7 +43,7 @@ public class DietPlanMailTemplate {
 
 		message += "<h2>DINNER</h2>";
 		message += "<table>";
-		userDietDTO.getLunch().stream().forEach(foodItem -> {
+		userDietDTO.getDinner().stream().forEach(foodItem -> {
 			message += "<tr>";
 			message += formatFoodItem(foodItem);
 			message += "</tr>";

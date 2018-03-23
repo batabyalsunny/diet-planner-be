@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.mindfire.dietplanner.api.util.DietPlanMailTemplate;
 import com.mindfire.dietplanner.api.util.MailComponent;
+import com.mindfire.dietplanner.core.component.CalorieCountComponent;
 import com.mindfire.dietplanner.core.component.DietPlannerComponent;
 import com.mindfire.dietplanner.core.component.UserComponent;
+import com.mindfire.dietplanner.core.dto.CalorieCountDTO;
+import com.mindfire.dietplanner.core.dto.CalorieTrackDTO;
 import com.mindfire.dietplanner.core.dto.UserDietDTO;
 
 @Service
@@ -23,6 +26,9 @@ public class DietPlannerService {
 
 	@Autowired
 	MailComponent mailComponent;
+
+	@Autowired
+	CalorieCountComponent calorieCountComponent;
 
 	@Autowired
 	DietPlanMailTemplate dietPlanMailTemplate;
@@ -40,9 +46,18 @@ public class DietPlannerService {
 		String mailTo = userComponent.getUser(id).getEmail();
 		String subject = "Diet Plan " + timeStamp + " | Di-Eat!";
 		String htmlText = dietPlanMailTemplate.getDietPlanHtml(userDietPlan);
-		
+
 		mailComponent.sendMailWithHtml(mailTo, subject, htmlText);
-		
+
 		return userDietPlan;
+	}
+
+	public CalorieCountDTO recordDietPlan(int id) {
+		int calorieCountInCurrentDietPlan = dietPlannerComponent.getTotalAmountOfCalories();	
+		return calorieCountComponent.addCaloriesToCount(id, calorieCountInCurrentDietPlan);
+	}
+
+	public CalorieTrackDTO trackCalorieCount(int id) {
+		return calorieCountComponent.getCalorieTrack(id);
 	}
 }
