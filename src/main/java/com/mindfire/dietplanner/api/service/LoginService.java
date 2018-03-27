@@ -8,6 +8,10 @@ import com.mindfire.dietplanner.core.component.UserComponent;
 import com.mindfire.dietplanner.core.dto.ResponseSimpleDTO;
 import com.mindfire.dietplanner.core.dto.UserDTO;
 
+/**
+ * LoginService is a service class, used to check user login credentials and
+ * return a simple response on success or error.
+ */
 @Service
 public class LoginService {
 
@@ -25,7 +29,7 @@ public class LoginService {
 	 *            User's email
 	 * @param password
 	 *            Password
-	 * @return
+	 * @return {@link ResponseSimpleDTO} Simple response DTO
 	 */
 	public ResponseSimpleDTO checkUserLogin(String email, String password) {
 		UserDTO userDTO = new UserDTO(); // Create new user DTO

@@ -12,6 +12,9 @@ GET - http://localhost:8081/api/login?email=email1&password=pass
 GET USER DATA -
 GET - http://localhost:8081/api/users/1
 
+CHANGE PASSWORD -
+POST - http://localhost:8081/api/users/password/1?password=pass&newPassword=password
+
 
 1. DIET MANAGEMENT --------
 

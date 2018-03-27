@@ -9,8 +9,7 @@ import com.mindfire.dietplanner.core.dto.FoodItemDTO;
 import com.mindfire.dietplanner.core.dto.NutrientDTO;
 
 /**
- * FoodItemService implements the business logic for FoodItem. It also
- * implements basic CRUD implementations.
+ * FoodItemService is a service class used to add, remove and search food items.
  */
 @Service
 public class FoodItemService {
@@ -30,7 +29,7 @@ public class FoodItemService {
 	 * 
 	 * @param id
 	 *            Food item ID
-	 * @return Food item
+	 * @return {@link FoodItemDTO} Food item DTO
 	 */
 	public FoodItemDTO getFoodItem(int id) {
 		return foodItemComponent.getFoodItem(id);
@@ -41,7 +40,7 @@ public class FoodItemService {
 	 * 
 	 * @param name
 	 *            Food item name
-	 * @return Food item
+	 * @return {@link FoodItemDTO} Food item DTO
 	 */
 	public FoodItemDTO getFoodItemByName(String name) {
 		return foodItemComponent.getFoodItemByName(name);
@@ -50,9 +49,11 @@ public class FoodItemService {
 	/**
 	 * Saves a new food item.
 	 * 
-	 * @param newFoodItemDTO
-	 *            Instance of new food item
-	 * @return Saved food item
+	 * @param foodItemDTO
+	 *            Food item details
+	 * @param nutrientDTO
+	 *            Food item's nutrition details
+	 * @return {@link FoodItemDTO} Food item DTO
 	 */
 	public FoodItemDTO setFoodItem(FoodItemDTO foodItemDTO, NutrientDTO nutrientDTO) {
 		// First save nutrients

@@ -15,7 +15,7 @@ import com.mindfire.dietplanner.core.dto.UserDietDTO;
 
 /**
  * DietPreferenceController acts as an API end-point for diet preferences data.
- * Class implements mapping end-points to service calls.
+ * This class implements mapping end-points to service calls.
  */
 @RestController
 @RequestMapping("/api/diet/pref")
@@ -31,7 +31,7 @@ public class DietPreferenceController {
 	 * 
 	 * @param id
 	 *            User ID
-	 * @return User diet DTO
+	 * @return {@link UserDietDTO} User's diet data
 	 */
 	@GetMapping("/{id}")
 	public UserDietDTO getDietPreference(@PathVariable int id) {
@@ -50,7 +50,7 @@ public class DietPreferenceController {
 	 *            Food course
 	 * @param foodId
 	 *            Food item ID
-	 * @return User diet DTO
+	 * @return {@link UserDietDTO} User's diet data
 	 */
 	@PostMapping("/{id}")
 	public UserDietDTO addDietPreference(@PathVariable int id, @RequestParam int foodCourse, @RequestParam int foodId) {
@@ -69,7 +69,7 @@ public class DietPreferenceController {
 	 *            Food course
 	 * @param foodId
 	 *            Food item ID
-	 * @return User diet DTO
+	 * @return {@link UserDietDTO} User's diet data
 	 */
 	@DeleteMapping("/{id}")
 	public UserDietDTO removeDietPreference(@PathVariable int id, @RequestParam int foodCourse,
