@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mindfire.dietplanner.api.service.UserService;
 import com.mindfire.dietplanner.core.dto.ProfileDTO;
+import com.mindfire.dietplanner.core.dto.ResponseSimpleDTO;
 import com.mindfire.dietplanner.core.dto.UserDTO;
 
 /**
@@ -91,5 +92,15 @@ public class UserController {
 			@RequestParam String newPassword) {
 		// Return updated user profile
 		return userService.changePassword(id, password, newPassword);
+	}
+
+	@GetMapping("/forgot-password-otp")
+	public ResponseSimpleDTO getForgotPasswordOtp(@RequestParam String name, @RequestParam String email) {
+		return userService.getForgotPasswordOtp(name, email);
+	}
+
+	@GetMapping("/reset-password")
+	public ResponseSimpleDTO resetPassword(@RequestParam int otp, String password) {
+		return userService.resetPassword(otp, password);
 	}
 }

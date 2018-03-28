@@ -15,6 +15,11 @@ GET - http://localhost:8081/api/users/1
 CHANGE PASSWORD -
 POST - http://localhost:8081/api/users/password/1?password=pass&newPassword=password
 
+GET OTP FOR PASSWORD RESET -
+GET - http://localhost:8081/api/users/forgot-password-otp?name=Subho&email=subhankardas831@gmail.com
+
+RESET PASSWORD WITH OTP -
+GET - http://localhost:8081/api/users/reset-password?otp=7774&password=passwa
 
 1. DIET MANAGEMENT --------
 
