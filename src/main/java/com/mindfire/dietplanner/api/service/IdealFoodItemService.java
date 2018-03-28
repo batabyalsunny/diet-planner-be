@@ -21,7 +21,7 @@ public class IdealFoodItemService {
 	/**
 	 * Gets list of ideal food items for diet plan.
 	 * 
-	 * @return {@link List<IdealFoodItemDTO>} List of ideal food items
+	 * @return List of ideal food items
 	 */
 	public List<IdealFoodItemDTO> getIdealFoodItems() {
 		return idealFoodItemComponent.getIdealFoodItems();

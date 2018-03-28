@@ -21,13 +21,13 @@ public class MailComponent {
 	 * Sends mail with HTML content with specified email address, custom subject and
 	 * formatted HTML content.
 	 * 
-	 * @param {@link
-	 * 			String} Receipient's email address
-	 * @param {@link
-	 * 			String} Subject for mail
-	 * @param {@link
-	 * 			String} HTML content for mail body
-	 * @return {@link Boolean} True if mail is sent, else false.
+	 * @param mailTo
+	 *            Email address
+	 * @param subject
+	 *            Subject for email
+	 * @param text
+	 *            Content for email
+	 * @return True on success, else false.
 	 */
 	public boolean sendMailWithHtml(String mailTo, String subject, String text) {
 		try {

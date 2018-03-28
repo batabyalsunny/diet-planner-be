@@ -3,6 +3,8 @@ package com.mindfire.dietplanner.api.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ import com.mindfire.dietplanner.core.dto.UserDietDTO;
  */
 @Service
 public class DietPlannerService {
+
+	private final Logger logger = LoggerFactory.getLogger(DietPlannerService.class);
 
 	@Autowired
 	DietPlannerComponent dietPlannerComponent;
@@ -50,6 +54,8 @@ public class DietPlannerService {
 	 * @return {@link UserDietDTO} Diet plan
 	 */
 	public UserDietDTO getNewDietPlan(int id) {
+		logger.info("[API] Getting new diet plan for user ID: " + id);
+
 		// Generate and return a new diet plan for user
 		userDietPlan = dietPlannerComponent.getNewDietPlan(id);
 		return userDietPlan;
@@ -64,6 +70,8 @@ public class DietPlannerService {
 	 * @return {@link UserDietDTO} Diet plan
 	 */
 	public UserDietDTO getCurrentDietPlan(int id) {
+		logger.info("[API] Sending diet plan to user via email");
+
 		// Generate time stamp for the diet plan
 		String timeStamp = new SimpleDateFormat("yyyy.MM.dd - HH.mm.ss").format(new Date());
 
@@ -86,6 +94,8 @@ public class DietPlannerService {
 	 * @return {@link CalorieCountDTO} User's calorie counts
 	 */
 	public CalorieCountDTO recordDietPlan(int id) {
+		logger.info("[API] Recording the diet plan for user ID: " + id);
+
 		// Record the amount of calories from user's diet plan
 		int calorieCountInCurrentDietPlan = dietPlannerComponent.getTotalAmountOfCalories();
 		return calorieCountComponent.addCaloriesToCount(id, calorieCountInCurrentDietPlan);
@@ -100,6 +110,8 @@ public class DietPlannerService {
 	 * @return {@link CalorieTrackDTO} User's calorie track record
 	 */
 	public CalorieTrackDTO trackCalorieCount(int id) {
+		logger.info("[API] Getting calorie track for user ID: " + id);
+
 		// Return user's calorie track record
 		return calorieCountComponent.getCalorieTrack(id);
 	}

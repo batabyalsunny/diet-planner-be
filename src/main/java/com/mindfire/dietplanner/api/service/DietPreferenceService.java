@@ -1,5 +1,7 @@
 package com.mindfire.dietplanner.api.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import com.mindfire.dietplanner.core.dto.UserDietDTO;
 @Service
 public class DietPreferenceService {
 
+	private final Logger logger = LoggerFactory.getLogger(DietPreferenceService.class);
+	
 	@Autowired
 	DietPreferenceComponent dietPreferenceComponent;
 
@@ -29,6 +33,8 @@ public class DietPreferenceService {
 	 * @return {@link UserDietDTO} User's diet DTO
 	 */
 	public UserDietDTO getUserDiet(int id) {
+		logger.info("[API] Getting user's diet preferences");
+		
 		return dietPreferenceComponent.getUserDiet(id);
 	}
 
@@ -45,6 +51,8 @@ public class DietPreferenceService {
 	 * @return {@link UserDietDTO} User diet DTO
 	 */
 	public UserDietDTO addItemToUserDiet(int id, int foodCourse, int foodId) {
+		logger.info("[API] Adding food item to diet preferences");
+		
 		return dietPreferenceComponent.addItemToUserDiet(id, foodCourse, foodId);
 	}
 
@@ -61,6 +69,8 @@ public class DietPreferenceService {
 	 * @return {@link UserDietDTO} User's diet DTO
 	 */
 	public UserDietDTO removeItemFromUserDiet(int id, int foodCourse, int foodId) {
+		logger.info("[API] Removing food item from diet preferences");
+		
 		return dietPreferenceComponent.removeItemFromUserDiet(id, foodCourse, foodId);
 	}
 }

@@ -1,5 +1,7 @@
 package com.mindfire.dietplanner.api.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import com.mindfire.dietplanner.core.dto.UserDTO;
  */
 @Service
 public class LoginService {
+
+	private final Logger logger = LoggerFactory.getLogger(LoginService.class);
 
 	@Autowired
 	UserComponent userComponent;
@@ -32,12 +36,16 @@ public class LoginService {
 	 * @return {@link ResponseSimpleDTO} Simple response DTO
 	 */
 	public ResponseSimpleDTO checkUserLogin(String email, String password) {
+		logger.info("[API] Logging in with " + email);
+
 		UserDTO userDTO = new UserDTO(); // Create new user DTO
 
 		// Search for user in database using email
 		try {
 			userDTO = userComponent.getUserByEmail(email); // Get user DTO
 		} catch (IllegalArgumentException e) {
+			logger.error("[API] User with email not found");
+
 			// User not found with given email
 			responseSimpleComponent.setSimpleResponse("error", "Email not signed up! Please sign up with email first.");
 			responseSimpleComponent.addExtra(null);
@@ -48,10 +56,14 @@ public class LoginService {
 		// Got user with given email, now check if password matches
 		// Password match is CASE SENSATIVE
 		if (!userDTO.getPassword().equals(password)) {
+			logger.error("[API] Login password does not match");
+
 			// Invalid password
 			responseSimpleComponent.setSimpleResponse("error", "Password doesn't match!");
 			responseSimpleComponent.addExtra(null);
 		} else {
+			logger.info("[API] Login successful");
+
 			// Password matched
 			responseSimpleComponent.setSimpleResponse("success", "Login successful!");
 			userDTO.setPassword(null); // Hide password in response

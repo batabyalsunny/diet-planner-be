@@ -1,4 +1,4 @@
-package com.mindfire.dietplanapi;
+package com.mindfire.dietplanner.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

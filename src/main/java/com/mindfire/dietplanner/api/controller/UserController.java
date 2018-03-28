@@ -25,7 +25,7 @@ import com.mindfire.dietplanner.core.dto.UserDTO;
 @RequestMapping("/api/users")
 @CrossOrigin
 public class UserController {
-
+	
 	@Autowired
 	UserService userService;
 
@@ -85,7 +85,7 @@ public class UserController {
 	 *            Current password
 	 * @param newPassword
 	 *            New password
-	 * @return
+	 * @return {@link UserDTO} User DTO
 	 */
 	@PostMapping("/password/{id}")
 	public UserDTO changePassword(@PathVariable int id, @RequestParam String password,
@@ -94,13 +94,36 @@ public class UserController {
 		return userService.changePassword(id, password, newPassword);
 	}
 
+	/**
+	 * Mails OTP to the user's email, which is used to reset his account login
+	 * password. The OTP is destroyed once used for password reset.
+	 * 
+	 * @param name
+	 *            User's name
+	 * @param email
+	 *            Email
+	 * @return Simple response
+	 */
 	@GetMapping("/forgot-password-otp")
 	public ResponseSimpleDTO getForgotPasswordOtp(@RequestParam String name, @RequestParam String email) {
+		// return response from service
 		return userService.getForgotPasswordOtp(name, email);
 	}
 
+	/**
+	 * Request password reset for the user's account with the OTP sent via mail.
+	 * Once OTP is confirmed, the old password is updated with the new password
+	 * provided.
+	 * 
+	 * @param otp
+	 *            OTP for password reset
+	 * @param password
+	 *            New password
+	 * @return Simple response
+	 */
 	@GetMapping("/reset-password")
 	public ResponseSimpleDTO resetPassword(@RequestParam int otp, String password) {
+		// Request for password reset
 		return userService.resetPassword(otp, password);
 	}
 }

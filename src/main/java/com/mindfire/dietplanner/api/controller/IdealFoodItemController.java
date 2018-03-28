@@ -31,7 +31,7 @@ public class IdealFoodItemController {
 	 * ideal food items with sub-list according to meal courses. It contains
 	 * sub-lists of food ideal for breakfast, lunch, snacks and dinner.
 	 * 
-	 * @return {@link List<IdealFoodItemDTO>} List of ideal food items
+	 * @return List of ideal food items
 	 */
 	@GetMapping("")
 	public List<IdealFoodItemDTO> getIdealFoodItems() {

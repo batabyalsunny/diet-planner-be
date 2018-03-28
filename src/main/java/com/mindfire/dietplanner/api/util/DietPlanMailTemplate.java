@@ -18,9 +18,8 @@ public class DietPlanMailTemplate {
 	/**
 	 * Generates a string of formatted HTML text from diet plan.
 	 * 
-	 * @param {@link
-	 * 			UserDietDTO} User's diet data
-	 * @return {@link String} String of HTML content from diet data
+	 * @param userDietDTO User's diet data
+	 * @return String of HTML content from diet data
 	 */
 	public String getDietPlanHtml(UserDietDTO userDietDTO) {
 		message = "";
