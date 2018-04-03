@@ -6,7 +6,6 @@
 	<groupId>com.mindfire</groupId>
 	<artifactId>diet-plan-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 
 	<name>Diet Planner REST API</name>
 	<description>Project : REST API implementation for Diet Planner</description>
@@ -47,13 +46,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
-			<version>1.2.6.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>com.mindfire</groupId>
-			<artifactId>diet-plan-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<type>war</type>
+			<version>1.2.6.RELEASE</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>

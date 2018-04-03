@@ -5,6 +5,10 @@
  * If response is null call Nutritionix API food search and store the response.
  * @param {string} foodName Name of the food item to search
  */
+
+//const foodItemsUrl = 'https://dieatapi.herokuapp.com/api/foods'; 
+//const idealFoodItemsUrl = 'https://dieatapi.herokuapp.com/api/foods/ideal';
+
 const foodItemsUrl = 'http://localhost:8081/api/foods';
 const idealFoodItemsUrl = 'http://localhost:8081/api/foods/ideal';
 
