@@ -21,6 +21,8 @@ GET - http://localhost:8081/api/users/forgot-password-otp?name=Subho&email=subha
 RESET PASSWORD WITH OTP -
 GET - http://localhost:8081/api/users/reset-password?otp=7774&password=passwa
 
+
+
 1. DIET MANAGEMENT --------
 
 GET DIET PREFERENCES -
@@ -49,6 +51,8 @@ GET - http://localhost:8081/api/diet/plan/record/1
 
 GET CURRENT CALORIE TRACK -
 GET - http://localhost:8081/api/diet/plan/track/1
+
+
 
 
 1. FOOD ITEMS MANAGEMENT --------
