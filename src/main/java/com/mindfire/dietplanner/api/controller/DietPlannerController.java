@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mindfire.dietplanner.api.service.DietPlannerService;
 import com.mindfire.dietplanner.core.dto.CalorieCountDTO;
 import com.mindfire.dietplanner.core.dto.CalorieTrackDTO;
+import com.mindfire.dietplanner.core.dto.DietPlanDTO;
 import com.mindfire.dietplanner.core.dto.UserDietDTO;
 
 /**
@@ -34,7 +35,7 @@ public class DietPlannerController {
 	 * @return {@link UserDietDTO} New diet plan for user
 	 */
 	@GetMapping("/{id}")
-	public UserDietDTO getNewDietPlan(@PathVariable int id) {
+	public DietPlanDTO getNewDietPlan(@PathVariable int id) {
 		return dietPlannerService.getNewDietPlan(id);
 	}
 

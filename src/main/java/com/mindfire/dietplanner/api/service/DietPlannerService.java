@@ -15,6 +15,7 @@ import com.mindfire.dietplanner.core.component.DietPlannerComponent;
 import com.mindfire.dietplanner.core.component.UserComponent;
 import com.mindfire.dietplanner.core.dto.CalorieCountDTO;
 import com.mindfire.dietplanner.core.dto.CalorieTrackDTO;
+import com.mindfire.dietplanner.core.dto.DietPlanDTO;
 import com.mindfire.dietplanner.core.dto.UserDietDTO;
 
 /**
@@ -43,7 +44,7 @@ public class DietPlannerService {
 	DietPlanMailTemplate dietPlanMailTemplate;
 
 	// Stores user's current diet plan
-	UserDietDTO userDietPlan;
+	DietPlanDTO dietPlanDTO;
 
 	/**
 	 * Gets a new generated diet plan for the user according to his diet preferences
@@ -53,12 +54,12 @@ public class DietPlannerService {
 	 *            User ID
 	 * @return {@link UserDietDTO} Diet plan
 	 */
-	public UserDietDTO getNewDietPlan(int id) {
+	public DietPlanDTO getNewDietPlan(int id) {
 		logger.info("[API] Getting new diet plan for user ID: " + id);
 
 		// Generate and return a new diet plan for user
-		userDietPlan = dietPlannerComponent.getNewDietPlan(id);
-		return userDietPlan;
+		dietPlanDTO = dietPlannerComponent.getNewDietPlan(id);
+		return dietPlanDTO;
 	}
 
 	/**
@@ -78,11 +79,11 @@ public class DietPlannerService {
 		// Get user's email, add subject to mail and diet plan as HTML
 		String mailTo = userComponent.getUser(id).getEmail();
 		String subject = "Diet Plan " + timeStamp + " | Di-Eat!";
-		String htmlText = dietPlanMailTemplate.getDietPlanHtml(userDietPlan);
+		String htmlText = dietPlanMailTemplate.getDietPlanHtml(dietPlanDTO.getDietPlan());
 
 		// Send the diet to user's mail
 		mailComponent.sendMailWithHtml(mailTo, subject, htmlText);
-		return userDietPlan;
+		return dietPlanDTO.getDietPlan();
 	}
 
 	/**
