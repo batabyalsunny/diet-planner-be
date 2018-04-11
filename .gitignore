@@ -22,3 +22,9 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+/diet-plan-core/mvnw
+/diet-plan-core/mvnw.cmd
+
+/diet-plan-api/mvnw
+/diet-plan-api/mvnw.cmd
