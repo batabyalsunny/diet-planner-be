@@ -23,8 +23,13 @@ dist/
 nbdist/
 .nb-gradle/
 
+<<<<<<< HEAD
 /diet-plan-core/mvnw
 /diet-plan-core/mvnw.cmd
 
 /diet-plan-api/mvnw
 /diet-plan-api/mvnw.cmd
+=======
+mvnw
+mvnw.cmd
+>>>>>>> f0f0011711dd70e45eab85c08f88a7c8b33c45e5

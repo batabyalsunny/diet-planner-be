@@ -25,9 +25,9 @@ public class DietPlanCoreApplicationTests {
 	final int userId = 1;
 
 	// User details to be tested
-	final int actualBmi = 18;
+	final int actualBmi = 17;
 	final int actualAge = 25;
-	final int actualCalories = 2037;
+	final int actualCalories = 2076;
 	
 
 	@Test
